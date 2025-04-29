@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { useRouter } from 'next/navigation';
 
 export function SignupForm({ role }) {
-  const router = useRouter();
+	const router = useRouter();
 
 	async function onSubmit(event) {
 		event.preventDefault();
@@ -27,7 +27,8 @@ export function SignupForm({ role }) {
 			const email = formData.get('email');
 			const password = formData.get('password');
 
-			const userRole = role === 'student' || 'instructor' ? role : 'student';
+			const userRole =
+				role === 'student' || role === 'instructor' ? role : 'student';
 
 			const response = await fetch('/api/register', {
 				method: 'POST',
@@ -45,8 +46,8 @@ export function SignupForm({ role }) {
 
 			response.status === 201 && router.push('/login');
 		} catch (error) {
-      console.log(e.message)
-    }
+			console.log(e.message);
+		}
 	}
 
 	return (
